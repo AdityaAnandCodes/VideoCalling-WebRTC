@@ -13,7 +13,7 @@ export default function handler(req, res) {
   if (!io) {
     io = new Server(res.socket.server, {
       cors: {
-        origin: "*", // Replace with your allowed origins
+        origin: "http://localhost:5173", 
         methods: ["GET", "POST"],
       },
     });
