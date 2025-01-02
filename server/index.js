@@ -1,5 +1,15 @@
-import { Server } from "socket.io";
+const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
+const cors = require("cors");
 
+const app = express();
+app.use(cors({
+  origin: "http://localhost:5173", // Allow your frontend origin
+  methods: ["GET", "POST"],
+}));
+
+const server = http.createServer(app);
 let io;
 
 export default function handler(req, res) {
@@ -58,3 +68,7 @@ export default function handler(req, res) {
 
   res.end();
 }
+
+server.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
